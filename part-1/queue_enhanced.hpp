@@ -40,7 +40,9 @@ template <typename T> class Dequeue : public Queue<T>
 
     // Remove all elements from the queue
     void clear() { 
-        // WRITE YOUR CODE HERE
+        while(this->_size > 0){
+            this->_size--;
+        }
     }
 
   protected:

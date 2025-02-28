@@ -33,5 +33,10 @@ int main(int argc, char **argv)
         std::cout << '\n';
     }
 
+    // queue.clear();
+    // for (int i = 0; i < 3; i++) {
+    //     std::cout << ' ' << queue.front();
+    // }
+
     return 0;
 }
