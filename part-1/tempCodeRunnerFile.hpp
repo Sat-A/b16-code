@@ -1,0 +1,1 @@
+assert(_size < _storage.size());
