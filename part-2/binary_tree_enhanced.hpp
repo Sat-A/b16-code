@@ -4,12 +4,14 @@
 #include <cassert>
 #include <vector>
 #include <memory>
+#include<iostream>
 
 // A class representing a binary tree
 template <typename V> struct BinaryTreeEnhanced {
     V _value;
     std::unique_ptr<BinaryTreeEnhanced<V>> _left;
     std::unique_ptr<BinaryTreeEnhanced<V>> _right;
+    BinaryTreeEnhanced<V> *_parent;
 
     // WRITE YOUR CODE HERE
 
@@ -28,7 +30,7 @@ template <typename V> struct BinaryTreeEnhanced {
     }
     friend BinaryTreeEnhanced *parent(const BinaryTreeEnhanced *t)
     {
-        // WRITE YOUR CODE HERE
+        return t->_parent;
     }
 };
 
@@ -39,7 +41,17 @@ make_binary_tree_enhanced(const V &value,
                           std::unique_ptr<BinaryTreeEnhanced<V>> l,
                           std::unique_ptr<BinaryTreeEnhanced<V>> r)
 {
-    // WRITE YOUR CODE HERE
-}
+    std::unique_ptr<BinaryTreeEnhanced<V>> node = std::unique_ptr<BinaryTreeEnhanced<V>>{
+        new BinaryTreeEnhanced<V>{value, std::move(l), std::move(r)}};
 
+    if (node->_left) {
+        node->_left->_parent = node.get();
+    }
+
+    if (node->_right) {
+        node->_right->_parent = node.get();
+    }
+
+    return node;
+}
 #endif // __binary_tree_enhanced__
